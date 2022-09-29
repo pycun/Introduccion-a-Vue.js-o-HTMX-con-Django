@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #41B883!important;">
+  <div class="container-fluid">
+    <a
+        href="{% url 'home' %}"
+        class="navbar-brand">
+        Introducción a ¿Vue.js o HTMX? con Django
+    </a>
+    <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link"
+             href="{% url 'mascota_list' %}"
+             tabindex="-1"
+             aria-disabled="true">
+              Django
+          </a>
+        </li>
+      <li class="nav-item">
+        <a class="nav-link"
+           href="{% url 'vue' %}"
+           tabindex="-1"
+           aria-disabled="true">
+            Vue
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"
+           href="{% url 'vue_min_list' %}"
+           tabindex="-1"
+           aria-disabled="true">
+            Vue Min
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link"
+           href="{% url 'htmx_list' %}"
+           tabindex="-1"
+           aria-disabled="true">
+            HTMX
+        </a>
+      </li>
+      </ul>
+    </div>
+  </div>
+</nav>

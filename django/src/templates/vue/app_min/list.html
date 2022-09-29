@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load render_bundle from webpack_loader %}
+{% load utils_filters %}
+
+{% block content %}
+  <h1>Listado de Mascotas con menos Vue.js</h1>
+
+  <div class="container">
+
+    {#  Contenedor de Vue  #}
+    <div id="app_min">
+        <div class="row">
+            {% for mascota in object_list %}
+                <div class="col">
+                    {# Componente de Vue #}
+                    <card-mascota-details
+                        nombre="{{ mascota.nombre }}"
+                        sexo="{{ mascota.get_sexo_display }}"
+                        edad="{{ mascota.edad }}"
+                        persona="{{mascota.persona.nombre}} {{ mascota.persona.apellidos }}"
+                        fecha_rescate="{{ mascota.fecha_rescate|date:'Y-m-d' }}"
+                        :vacunas="{{ mascota.vacunas.all|lista_nombre_vacunas }}"
+                    >
+                        <a
+                            class="btn btn-outline-primary"
+                            href="{% url 'vue_min_edit' mascota.id %}"
+                        >
+                          Ver
+                        </a>
+                    </card-mascota-details>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    {% render_bundle 'app_min' %}
+{% endblock content %}

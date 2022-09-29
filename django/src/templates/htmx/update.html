@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<script type="text/javascript" src="{% static 'js/htmx.min.js' %}"></script>
+
+<div class="container">
+    <div id="app_min">
+        <div class="row">
+            <div class="col-6">
+                <div class="card" style="width: 18rem; margin: 15px;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ object.nombre }}</h5>
+
+                        <p class="card-text">
+                            "{{ object.nombre }}" es una mascota del sexo {{ object.get_sexo_display }} que tiene una edad
+                            de {{ object.edad }} años.
+                        </p>
+                        <p class="card-text">
+                            Rescatado el día {{ object.fecha_rescate }}, por {{ object.persona }}.
+                        </p>
+                    </div>
+
+                    <div class="card-footer text-muted">
+                        Vacunas aplicadas:
+                        {% for vacuna in object.vacunas.all %}
+                            {{ vacuna.nombre }} -
+                        {% empty %}
+                            Ninguna
+                        {% endfor %}
+                    </div>
+
+                    <div class="card-footer">
+
+                        <!--
+                            NOTE: Se puede usar el prefijo 'data-' cuandno se use htmx
+                             Esto es util si queremos que el IDE o el editor no marque una alerta de
+                             "Atributo '' no permitido".
+                         -->
+                        <button
+                            hx-get="{% url 'htmx_update' object.id %}"
+                            data-hx-target="#aqui-va-mi-form"
+
+                            class="btn btn-outline-primary"
+                        >
+                            Editar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6">
+
+                <!--
+                    NOTE: Aqui va a inyectarse el código html del formulario
+                -->
+                <div id="aqui-va-mi-form"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,54 @@
+=========================================
+Introducción a ¿Vue.js o HTMX? con Django
+=========================================
+
+Este proyecto es una continuación del `Introducción a Vue.js con Django 
+<https://github.com/FernandoPrzGmz/Introduccion-a-Vue.js-con-Django>`__
+presentado durante el evento PyCun en su edición número 10.
+
+
+Instalación del proyecto
+========================
+
+.. admonition:: Pipenv
+    :class: info
+
+    Este proyecto utiliza pipenv para la creación de entornos virtuales y la
+    instalación de dependencias requeridas en el proyecto.
+
+    Por lo tanto, previamente debe tener la herramienta de pipenv instalada y
+    configurada correctamente.
+
+
+Para la creación del entorno e instalación de las dependencias del proyecto, ejecute
+las siguientes instrucciones en la ruta principal del proyecto "/django".
+
+.. code:: bash
+
+    pipenv shell
+    pipenv install
+
+A continuación, ejecute el comando "demo" de los scripts definidos en el Makefile.
+
+.. code:: bash
+
+    make demo
+
+
+.. admonition:: Contraseña superuser
+    :class: important
+
+    Al final de este scripts se le solicitará que introduzca una contraseña para el
+    super usuario "pycun". Por favor, defina la contraseña de su preferencia.
+
+
+Construcción de los archivos de documentación
+=============================================
+
+Utilice el comando "docs" de los scripts definidos en el Makefile
+
+.. code:: bash
+
+    make docs
+
+A continuación, abra el archivo "index.html" desde el navegador.

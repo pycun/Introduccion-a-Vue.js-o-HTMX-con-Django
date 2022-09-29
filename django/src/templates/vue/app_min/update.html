@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load render_bundle from webpack_loader %}
+{% load widget_tweaks %}
+{% load utils_filters %}
+
+{% block content %}
+  <div class="container">
+
+    {#  Contenedor de Vue  #}
+    <div id="app_min">
+        <div class="row">
+            <div class="col">
+                {# Componente de Vue #}
+                <card-mascota-form
+                    :mascota="{{ object_json }}"
+
+                    {% if form.errors %}
+                    {# Agregamos el prop de error para mostrar el formulario del componente #}
+                    error="true"
+                    {% endif %}
+                >
+                    {# Enviamos el formulario de Django dentro de los slots de vue #}
+                    <form method="post"> {% csrf_token %}
+                        <div class="form-group">
+                            <label for="{{ form.nombre.id_for_label }}">
+                                {{ form.nombre.label }}
+                            </label>
+                            {% render_field form.nombre class="form-control" ref="input"%}
+                            <small class="form-text text-muted">{{ form.nombre.errors }}</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.sexo.id_for_label }}">
+                                {{ form.sexo.label }}
+                            </label>
+                            {% render_field form.sexo class="form-control" %}
+                            <small class="form-text text-muted">{{ form.sexo.errors }}</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.edad.id_for_label }}">
+                                {{ form.edad.label }}
+                            </label>
+                            {% render_field form.edad class="form-control" %}
+                            <small class="form-text text-muted">{{ form.edad.errors }}</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.fecha_rescate.id_for_label }}">
+                                {{ form.fecha_rescate.label }}
+                            </label>
+                            {% render_field form.fecha_rescate class="form-control" %}
+                            <small class="form-text text-muted">{{ form.fecha_rescate.errors }}</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.persona.id_for_label }}">
+                                Asignado a:
+                            </label>
+                            {% render_field form.persona class="form-control" %}
+                            <small class="form-text text-muted">{{ form.persona.errors }}</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.vacunas.id_for_label }}">
+                                Vacunas aplicadas
+                            </label>
+                            {% render_field form.vacunas class="form-control" %}
+                            <small class="form-text text-muted">{{ form.vacunas.errors }}</small>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4">
+                                <button class="btn btn-outline-primary" type="submit">
+                                    Guardar
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </card-mascota-form>
+            </div>
+        </div>
+    </div>
+
+
+    {% render_bundle 'app_min' %}
+{% endblock content %}
